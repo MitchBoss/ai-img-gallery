@@ -10,7 +10,7 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin-bottom: 20px;
-    margin: 0 auto; /* Center containter */
+    margin: 0 auto; /* Center container */
     max-width: 90%;
 }
 
@@ -20,37 +20,59 @@ body {
     color: #4a4a4a;
 }
 
-/* ... existing styles ... */
+.gallery-description {
+    margin-bottom: 1rem;
+    text-align: justify;
+    color: #555;
+}
+
+/* Grid container for images */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Horizontally center items */
+    gap: 10px; /* Spacing between grid items */
+}
+
+/* Grid item style */
+.col-lg-3, .col-md-4, .col-sm-6 {
+    display: flex;
+    justify-content: center; /* Horizontally center image within grid item */
+    align-items: center; /* Vertically center image within grid item */
+}
 
 /* Thumbnail styles */
 .img-thumbnail {
-    width: auto; /* Adjust width as per your gallery design */
-    max-height: 300px; /* Increased height for larger gallery view */
-    min-width: 300px;
-    margin: 5px; /* Spacing between images */
-    display: block; /* Use block to provide a line break after each image */
-    margin-bottom: 15px; /* Increase spacing between rows of images */
+    width: 100%; /* Make the image responsive within its container */
+    height: auto; /* Ensures the height grows in proportion with the width while maintaining aspect ratio */
+    object-fit: contain; /* Ensures the image scales correctly within its container */
+    max-height: 200px; /* Sets the maximum height the image can have */
+    border-radius: 8px; /* For rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* For smooth transitions */
+}
+
+/* Thumbnail container style */
+.thumbnail-container {
+    display: flex;
+    justify-content: center; /* Horizontally center image within grid item */
+    align-items: center; /* Vertically center image within grid item */
+    margin: 5px; /* Spacing around the image */
 }
 
 .img-thumbnail:hover {
-    transform: scale(1.1); /* Adjust scale value to your preference */
-    cursor: pointer; /* Change cursor to indicate the item is clickable */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: add shadow for depth */
+    transform: scale(1.1); /* Scale up image on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth, on hover */
     z-index: 10; /* Make sure the scaled item is above others */
-    position: relative; /* Needed for z-index to work */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for the transform and shadow */
 }
 
 /* Fullscreen modal styles */
 .modal-dialog {
     margin: 0;
-    height: calc(100% - 60px); /* Full height minus padding */
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
     width: auto;
-    margin: 0 auto; /* Center the dialog in the screen */
+    max-width: 100%;
 }
 
 .modal-open .modal {
@@ -65,23 +87,52 @@ body {
 
 .modal-content {
     background: transparent; /* Remove default modal background */
-    border: none; /* Remove default border */
+    border: 2px solid #333; /* Dark border for visibility */
+    border-radius: 0.25rem; /* Match Bootstrap's default modal border radius */
 }
 
 .modal-body {
-    padding: 1rem; /* Padding around the image */
+    position: relative; /* Needed for absolute positioning of the close button */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    height: 100%; /* Make sure the modal body stretches to the full height of the modal dialog */
+    padding: 0; /* Remove padding to allow full use of the area for the image */
 }
 
 /* Adjust the modal image size */
 #modalImage {
     display: block; /* Use block to center the image */
-    max-width: 90%; /* Maximum width of the image is 90% of the screen width */
-    max-height: 80vh; /* Maximum height of the image is 80% of the screen height */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100%; /* Maximum width of the image is 100% of the modal body */
+    max-height: 80vh; /* Maximum height of the image is 80% of the viewport height */
+    object-fit: contain; /* Ensure the image's aspect ratio is preserved */
+    margin: auto; /* Center the image in the available space */
     transition: transform 0.5s ease; /* Animation for the transform */
-    border: 4px solid #2c3e50; /* Example solid border, choose your color */
     border-radius: 10px; /* Optional: if you want rounded corners */
+}
+
+/* Close button styling */
+#modalCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1050; /* Above the modal content */
+    background: #ffffff; /* White color background */
+    border-radius: 0.25rem; /* Rounded border */
+    padding: 0.5rem; /* Padding for the button area */
+    opacity: 0.8; /* Slight transparency */
+    border: none; /* No border */
+    cursor: pointer; /* Show a pointer on hover */
+    font-size: 1.5rem; /* Close button size */
+}
+
+#modalCloseButton span {
+    font-size: 1.5rem; /* Size of the '×' character */
+    color: #000; /* Black color text for visibility */
+}
+
+#modalCloseButton:hover {
+    opacity: 1; /* Full visibility on hover */
 }
 
 @media screen and (max-width: 992px) {
@@ -90,13 +141,13 @@ body {
     #modalImage {
         width: 100%;
         height: 100%;
+        max-width: none;
         max-height: none;
         padding: 0;
         margin: 0;
     }
-    
+
     .modal-body {
         padding: 0;
     }
 }
-
