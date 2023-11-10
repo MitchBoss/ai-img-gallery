@@ -14,16 +14,20 @@ body {
     max-width: 90%;
 }
 
+/* Centered bold title */
 .gallery-title {
     text-align: center;
     margin-bottom: 30px;
     color: #4a4a4a;
+    font-weight: bold; /* Make title bold */
 }
 
+/* Centered bold description */
 .gallery-description {
-    margin-bottom: 1rem;
-    text-align: justify;
-    color: #555;
+    text-align: center;
+    margin-top: 1rem; /* Additional space above the description */
+    margin-bottom: 1rem; /* Additional space below the description */
+    font-weight: bold; /* Make description bold */
 }
 
 /* Grid container for images */
@@ -39,35 +43,33 @@ body {
     display: flex;
     justify-content: center; /* Horizontally center image within grid item */
     align-items: center; /* Vertically center image within grid item */
+    padding: 0; /* Removing Bootstrap padding for a cleaner layout */
 }
 
 /* Thumbnail styles */
 .img-thumbnail {
     width: 100%; /* Make the image responsive within its container */
-    height: auto; /* Ensures the height grows in proportion with the width while maintaining aspect ratio */
-    object-fit: contain; /* Ensures the image scales correctly within its container */
-    max-height: 200px; /* Sets the maximum height the image can have */
-    border-radius: 8px; /* For rounded corners */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* For smooth transitions */
+    height: auto; /* Ensure the height grows in proportion with the width while maintaining aspect ratio */
+    object-fit: contain; /* Ensure the image scales appropriately */
+    max-height: 200px; /* Maximum height of the image */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for animations */
+    cursor: pointer; /* Indicate that the thumbnail is clickable */
 }
 
-/* Thumbnail container style */
 .thumbnail-container {
-    display: flex;
-    justify-content: center; /* Horizontally center image within grid item */
-    align-items: center; /* Vertically center image within grid item */
-    margin: 5px; /* Spacing around the image */
+    position: relative;
+    overflow: hidden;
 }
 
 .img-thumbnail:hover {
-    transform: scale(1.1); /* Scale up image on hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth, on hover */
-    z-index: 10; /* Make sure the scaled item is above others */
+    transform: scale(1.05); /* Slightly scale up image on hover */
+    z-index: 10; /* Ensure it's above other items */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow for depth */
 }
 
-/* Fullscreen modal styles */
+/* Modal styling */
 .modal-dialog {
-    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,39 +78,40 @@ body {
 }
 
 .modal-open .modal {
-    display: flex !important; /* Ensure the modal uses flex display */
-    align-items: center; /* Center modal vertically in window */
-    justify-content: center; /* Center modal horizontally in window */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-backdrop.show {
-    opacity: 0.8; /* Darken the background */
+    opacity: 0.5; /* Slightly darken the background */
 }
 
 .modal-content {
     background: transparent; /* Remove default modal background */
-    border: 2px solid #333; /* Dark border for visibility */
-    border-radius: 0.25rem; /* Match Bootstrap's default modal border radius */
+    border: 3px solid #333; /* Substantial border for visibility */
+    border-radius: 8px; /* Rounded border edges */
+    overflow: hidden; /* Hide any overflowing content */
+    margin: 2vh; /* Gap from the edge of the viewport */
+    max-height: 96vh; /* Max height to maintain a gap from the top */
 }
 
 .modal-body {
-    position: relative; /* Needed for absolute positioning of the close button */
-    display: flex; /* Use flexbox to center the image */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-    height: 100%; /* Make sure the modal body stretches to the full height of the modal dialog */
-    padding: 0; /* Remove padding to allow full use of the area for the image */
+    position: relative; /* Needed for close button's absolute positioning */
+    display: flex; /* Flex container for image center alignment */
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* No padding to allow image full use of area */
 }
 
-/* Adjust the modal image size */
 #modalImage {
-    display: block; /* Use block to center the image */
-    max-width: 100%; /* Maximum width of the image is 100% of the modal body */
-    max-height: 80vh; /* Maximum height of the image is 80% of the viewport height */
-    object-fit: contain; /* Ensure the image's aspect ratio is preserved */
-    margin: auto; /* Center the image in the available space */
-    transition: transform 0.5s ease; /* Animation for the transform */
-    border-radius: 10px; /* Optional: if you want rounded corners */
+    display: block;
+    max-width: 90%; /* Limit width to leave some space; will also help maintaining aspect ratio */
+    max-height: 90%; /* Limit height the same way as width */
+    object-fit: contain; /* Preserve aspect ratio */
+    margin: auto; /* Center image within its container */
+    transition: transform 0.5s ease; /* Smooth transition for any transformations */
+    border-radius: 4px; /* Match border radius with modal content */
 }
 
 /* Close button styling */
@@ -116,38 +119,33 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
-    z-index: 1050; /* Above the modal content */
-    background: #ffffff; /* White color background */
-    border-radius: 0.25rem; /* Rounded border */
-    padding: 0.5rem; /* Padding for the button area */
-    opacity: 0.8; /* Slight transparency */
-    border: none; /* No border */
-    cursor: pointer; /* Show a pointer on hover */
-    font-size: 1.5rem; /* Close button size */
-}
-
-#modalCloseButton span {
-    font-size: 1.5rem; /* Size of the '×' character */
-    color: #000; /* Black color text for visibility */
+    z-index: 1050; /* Above the image */
+    font-size: 30px; /* Large enough for better visibility */
+    line-height: 30px;
+    color: #fff; /* White contrast color */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 50%; /* Circular shape */
+    padding: 0.3em 0.6em; /* Padding for hit area */
+    border: none; /* No border needed for this button */
+    cursor: pointer; /* Cursor to show it's clickable */
+    opacity: 0.8; /* Transparency for better UX */
 }
 
 #modalCloseButton:hover {
     opacity: 1; /* Full visibility on hover */
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
     .modal-dialog,
     .modal-content,
     #modalImage {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        max-height: none;
-        padding: 0;
-        margin: 0;
+        width: 100%; /* Full width on smaller screens */
+        max-height: none; /* Allow to use full height available */
+        margin: 0; /* Remove margin on small screens */
+        border: none; /* Remove border on small screens */
     }
-
     .modal-body {
-        padding: 0;
+        padding: 0; /* Reset padding */
+        height: 100%; /* Use full height */
     }
 }
