@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Art Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container gallery-container">
+        <h1 class="gallery-title">AI Art Gallery</h1>
+        <!-- The row will be populated with images from the script -->
+        <div class="row" id="imageGallery">
+            <!-- Images will be inserted here by the script.js -->
+        </div>
+    </div>
+
+    <!-- Modal for fullscreen image view -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img class="img-fluid" id="modalImage" style="margin:auto; display:block;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include necessary scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.5.0/lazyload.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

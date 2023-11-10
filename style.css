@@ -1,0 +1,102 @@
+body {
+    padding-top: 20px;
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Dark grey text */
+}
+
+.gallery-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+    margin: 0 auto; /* Center containter */
+    max-width: 90%;
+}
+
+.gallery-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4a4a4a;
+}
+
+/* ... existing styles ... */
+
+/* Thumbnail styles */
+.img-thumbnail {
+    width: auto; /* Adjust width as per your gallery design */
+    max-height: 300px; /* Increased height for larger gallery view */
+    min-width: 300px;
+    margin: 5px; /* Spacing between images */
+    display: block; /* Use block to provide a line break after each image */
+    margin-bottom: 15px; /* Increase spacing between rows of images */
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.1); /* Adjust scale value to your preference */
+    cursor: pointer; /* Change cursor to indicate the item is clickable */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: add shadow for depth */
+    z-index: 10; /* Make sure the scaled item is above others */
+    position: relative; /* Needed for z-index to work */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for the transform and shadow */
+}
+
+/* Fullscreen modal styles */
+.modal-dialog {
+    margin: 0;
+    height: calc(100% - 60px); /* Full height minus padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    width: auto;
+    margin: 0 auto; /* Center the dialog in the screen */
+}
+
+.modal-open .modal {
+    display: flex !important; /* Ensure the modal uses flex display */
+    align-items: center; /* Center modal vertically in window */
+    justify-content: center; /* Center modal horizontally in window */
+}
+
+.modal-backdrop.show {
+    opacity: 0.8; /* Darken the background */
+}
+
+.modal-content {
+    background: transparent; /* Remove default modal background */
+    border: none; /* Remove default border */
+}
+
+.modal-body {
+    padding: 1rem; /* Padding around the image */
+}
+
+/* Adjust the modal image size */
+#modalImage {
+    display: block; /* Use block to center the image */
+    max-width: 90%; /* Maximum width of the image is 90% of the screen width */
+    max-height: 80vh; /* Maximum height of the image is 80% of the screen height */
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.5s ease; /* Animation for the transform */
+    border: 4px solid #2c3e50; /* Example solid border, choose your color */
+    border-radius: 10px; /* Optional: if you want rounded corners */
+}
+
+@media screen and (max-width: 992px) {
+    .modal-dialog,
+    .modal-content,
+    #modalImage {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .modal-body {
+        padding: 0;
+    }
+}
+
